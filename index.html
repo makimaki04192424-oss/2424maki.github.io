@@ -1,1 +1,201 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>私の自己紹介サイト</title>
+  <meta name="description" content="自己紹介、趣味、目標、連絡先をまとめたシンプルなポートフォリオサイトです。" />
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --accent: #16a34a; /* グリーン */
+      --accent-weak: #d1fae5;
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,.06);
+      --maxw: 980px;
+    }
+
+    /* ベース */
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container { width: min(92%, var(--maxw)); margin: 0 auto; }
+
+    /* ヘッダー（ヒーロー）*/
+    header.hero {
+      position: relative;
+      min-height: 42vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: #fff;
+      background:
+        linear-gradient( to bottom right, rgba(22,163,74,.8), rgba(16,185,129,.7) ),
+        url('header.jpg') center/cover no-repeat; /* ← お好みの画像に差し替え */
+    }
+    header .inner { padding: 60px 0; }
+    header h1 { font-size: clamp(28px, 5vw, 44px); margin: 0 0 10px; letter-spacing: .03em; }
+    header p { margin: 0; opacity: .95; }
+
+    /* ナビ */
+    nav#topnav {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(255,255,255,.9);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #e5e7eb;
+    }
+    nav .navwrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 10px 0; }
+    .brand { font-weight: 700; }
+    .links { display: flex; gap: 14px; flex-wrap: wrap; }
+    .links a { color: #111; padding: 8px 10px; border-radius: 10px; }
+    .links a:hover { background: #f3f4f6; text-decoration: none; }
+
+    /* セクション */
+    section { padding: 56px 0; }
+    .card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: clamp(18px, 3vw, 28px); }
+    h2 { font-size: clamp(22px, 4.2vw, 30px); margin: 0 0 14px; }
+    .muted { color: var(--muted); }
+
+    /* グリッド */
+    .grid { display: grid; gap: 18px; }
+    @media (min-width: 760px) { .grid.cols-2 { grid-template-columns: 1fr 1fr; } }
+
+    /* リストやタグ */
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { background: var(--accent-weak); color: #065f46; padding: 6px 10px; border-radius: 999px; font-size: 14px; }
+
+    /* ボタン */
+    .btn { display: inline-block; padding: 12px 18px; border-radius: 12px; background: var(--accent); color: #fff; font-weight: 700; box-shadow: 0 6px 18px rgba(22,163,74,.25); }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(22,163,74,.28); text-decoration: none; }
+
+    /* フッター */
+    footer { text-align: center; padding: 40px 0 60px; color: var(--muted); }
+
+    /* ダークモード（OS設定に追従） */
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #0b1220; --card: #0f172a; --text: #e5e7eb; --muted: #9ca3af; --accent-weak: rgba(16,185,129,.18); }
+      nav#topnav { background: rgba(15,23,42,.8); border-bottom-color: #1f2937; }
+      .links a { color: #e5e7eb; }
+      .links a:hover { background: rgba(255,255,255,.05); }
+      header.hero { color: #e5e7eb; }
+    }
+  </style>
+</head>
+<body>
+  <!-- アクセシビリティ用スキップリンク -->
+  <a href="#about" style="position:absolute;left:-9999px;">本文へスキップ</a>
+
+  <!-- ナビゲーション -->
+  <nav id="topnav" aria-label="メイン">
+    <div class="container navwrap">
+      <div class="brand">My Profile</div>
+      <div class="links" role="list">
+        <a href="#about">自己紹介</a>
+        <a href="#hobby">趣味</a>
+        <a href="#goals">目標</a>
+        <a href="#contact">連絡先</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ヒーロー（ヘッダー） -->
+  <header class="hero" role="banner">
+    <div class="inner container">
+      <h1>はじめまして！<br>〇〇です。</h1>
+      <p class="muted">千葉在住の理学療法士／趣味は〇〇。よろしくお願いします。</p>
+      <p style="margin-top:18px"><a class="btn" href="quiz.html">クイズに挑戦する</a></p>
+    </div>
+  </header>
+
+  <main id="content" class="container" role="main">
+    <!-- 自己紹介 -->
+    <section id="about" aria-labelledby="about-h">
+      <div class="card grid cols-2">
+        <div>
+          <h2 id="about-h">自己紹介</h2>
+          <p>
+            こんにちは、〇〇です。ここに短い自己紹介を書きます。<br>
+            例）「理学療法士としてリハビリに携わっています。人の役に立つこと、学び続けることが好きです。」
+          </p>
+          <ul>
+            <li>出身：千葉</li>
+            <li>資格：〇〇</li>
+            <li>好きなこと：散歩、写真、コーヒー</li>
+          </ul>
+        </div>
+        <div>
+          <img src="profile.jpg" alt="プロフィール写真（差し替えてください）" style="border-radius: var(--radius); box-shadow: var(--shadow);" />
+        </div>
+      </div>
+    </section>
+
+    <!-- 趣味 -->
+    <section id="hobby" aria-labelledby="hobby-h">
+      <div class="card">
+        <h2 id="hobby-h">趣味</h2>
+        <p class="muted">最近ハマっていることや、週末にしていることを書きましょう。</p>
+        <div class="tags" aria-label="趣味タグ">
+          <span class="tag">カメラ</span>
+          <span class="tag">旅行</span>
+          <span class="tag">筋トレ</span>
+          <span class="tag">読書</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 目標 -->
+    <section id="goals" aria-labelledby="goals-h">
+      <div class="card">
+        <h2 id="goals-h">目標</h2>
+        <p>
+          今年の目標を書いておくと、読み手にもあなたの人柄が伝わります。<br>
+          例）「毎月1冊専門書を読む」「運動習慣を続ける」「Web制作を学ぶ」など。
+        </p>
+      </div>
+    </section>
+
+    <!-- 連絡先 -->
+    <section id="contact" aria-labelledby="contact-h">
+      <div class="card grid cols-2">
+        <div>
+          <h2 id="contact-h">連絡先</h2>
+          <p>お問い合わせは以下へお願いします。</p>
+          <ul>
+            <li>メール：<a href="mailto:you@example.com">you@example.com</a></li>
+            <li>X(Twitter)：<a href="#" rel="noopener">@your_id</a></li>
+            <li>Instagram：<a href="#" rel="noopener">@your_id</a></li>
+          </ul>
+        </div>
+        <div>
+          <!-- Google フォームなどを埋め込むスペース（任意） -->
+          <div style="aspect-ratio: 16/9; background:#f3f4f6; border-radius: var(--radius); display:grid; place-items:center; color:#6b7280;">
+            フォームや地図を埋め込む場合はここに配置
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="y"></span> Your Name
+  </footer>
+
+  <script>
+    // フッターの年を自動更新
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
 
