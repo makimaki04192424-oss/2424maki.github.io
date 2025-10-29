@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>自己紹介クイズ</title>
+  <style>
+    body {
+      font-family: "Yu Gothic", Meiryo, sans-serif;
+      background: #f6f7fb;
+      color: #111;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.8;
+    }
+    h1 {
+      text-align: center;
+      color: #16a34a;
+    }
+    .quiz-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+    .question {
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 8px;
+      background: #e5e7eb;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover { background: #d1fae5; }
+    .result {
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    a.back {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: white;
+      background: #16a34a;
+      padding: 10px 16px;
+      border-radius: 10px;
+    }
+    a.back:hover { opacity: 0.9; }
+  </style>
+</head>
+<body>
+  <h1>クイズに挑戦！</h1>
+  <div class="quiz-container" id="quiz">
+    <!-- JavaScriptでクイズを表示します -->
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        question: "Q1. 管理人の出身はどれ？",
+        options: ["① 千葉", "② 東京", "③ 北海道"],
+        correct: 0
+      },
+      {
+        question: "Q2. 職業は？",
+        options: ["① 医師", "② 看護師", "③ 理学療法士"],
+        correct: 2
+      },
+      {
+        question: "Q3. 趣味は？",
+        options: ["① 筋トレ", "② 推し活", "③ 怪獣と遊ぶ"],
+        correct: 2
+      }
+    ];
+
+    const quizContainer = document.getElementById("quiz");
+    let current = 0;
+    let score = 0;
+
+    function showQuestion() {
+      const q = quizData[current];
+      quizContainer.innerHTML = `
+        <div class="question">${q.question}</div>
+        ${q.options.map((opt, i) => `<button onclick="checkAnswer(${i})">${opt}</button>`).join("")}
+      `;
+    }
+
+    function checkAnswer(selected) {
+      const q = quizData[current];
+      if (selected === q.correct) {
+        alert("✅ 正解！");
+        score++;
+      } else {
+        alert("❌ 残念！");
+      }
+      current++;
+      if (current < quizData.length) {
+        showQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult() {
+      quizContainer.innerHTML = `
+        <div class="result">結果：${score} / ${quizData.length} 問正解！</div>
+        <a class="back" href="index.html">トップページに戻る</a>
+      `;
+    }
+
+    showQuestion();
+  </script>
+</body>
+</html>
